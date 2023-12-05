@@ -19,11 +19,14 @@ type TypeApi  = {
 }
 
 const Api = async ({url, method, data} : TypeApi)=>{
+    
     const res = await ModalApi.request({
         url,
         method,
-        data: new URLSearchParams(data),
-        
+        headers: {
+            admin: data.login,
+            password: data.password
+        }
         
     })
     return res

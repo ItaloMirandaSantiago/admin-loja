@@ -13,9 +13,9 @@ const Login = ()=>{
         if (password && login) {
             const data = {login, password}
             const res = await Api({url: "/login", method: "get", data})
-            console.log(res)
+           
             if (res.data.sucess) {
-                //navigate('/home')
+                navigate('/home')
             }
         }
     }
