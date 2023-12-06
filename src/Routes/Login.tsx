@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Api from "../AxiosConfig/Api"
 import { useNavigate } from "react-router-dom"
+import { json } from "stream/consumers"
 
 
 
@@ -15,6 +16,7 @@ const Login = ()=>{
             const res = await Api({url: "/login", method: "get", data})
            
             if (res.data.sucess) {
+                localStorage.setItem("login", JSON.stringify(data))
                 navigate('/home')
             }
         }
