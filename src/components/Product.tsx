@@ -21,23 +21,25 @@ const Product = ()=>{
 
     
     return(
-        <table className="w-full border border-yellow-400" border={1}>
-            <thead className="border border-yellow-400">
-                <tr>
-                    <th>nome</th>
-                    <th>descrição</th>
-                    <th>Preço</th>
-                    <th>Unidades</th>
+        <table className="my-5 container border border-custom" border={1}>
+            <thead className="border border-custom bg-headeTable">
+                <tr className="border border-custom">
+                    <th className="border border-custom font-bold">id</th>
+                    <th className="border border-custom font-bold">nome</th>
+                    <th className="border border-custom max-w-[100px]">descrição</th>
+                    <th className="border border-custom">Preço</th>
+                    <th className="border border-custom">Unidades</th>
                 </tr>
-            </thead>
-            <tbody>
+            </thead >
+            <tbody className="border border-custom">
                 {arrayproduct && arrayproduct.map((res)=>{
                     return(
-                        <tr key={res.id}>
-                            <th>{res.title}</th>
-                            <th>{res.description}</th>
-                            <th>{res.price}</th>
-                            <th>{res.unit}</th>
+                        <tr className="border border-custom" key={res.id}>
+                            <th className="truncate max-w-[100px] border border-custom">{res.id}</th>
+                            <th className="truncate max-w-[100px] border border-custom">{res.title}</th>
+                            <th className="truncate max-w-[100px] border border-custom">{res.description}</th>
+                            <th className="truncate max-w-[100px] border border-custom">{res.price}</th>
+                            <th className="truncate max-w-[100px] border border-custom">{res.unit}</th>
                         </tr>
                     )
                 })}

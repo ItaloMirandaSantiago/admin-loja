@@ -4,6 +4,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 
+body{
+
+  background-color: azure;
+}
+
 *{
   font-family: Comfortaa, Courier, monospace, sans-serif;
   margin: 0;

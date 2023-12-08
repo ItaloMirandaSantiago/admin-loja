@@ -25,7 +25,7 @@ type TypeApi  = {
 }
 
 const Api = async ({url, method, data, product} : TypeApi)=>{
-    
+    console.log('req')
     const res = await ModalApi.request({
         url,
         method,

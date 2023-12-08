@@ -13,12 +13,19 @@ const Login = ()=>{
     async function Enter() {
         if (password && login) {
             const data = {login, password}
-            const res = await Api({url: "/login", method: "get", data})
+            try{
+                const res = await Api({url: "/login", method: "get", data})
            
-            if (res.data.sucess) {
-                localStorage.setItem("login", JSON.stringify(data))
-                navigate('/home')
+                if (res.data.sucess) {
+                    localStorage.setItem("login", JSON.stringify(data))
+                    navigate('/home')
+                }else{
+                    alert('senha ou login incorreto')
+                }
+            }catch(err){
+                alert('a api está fora do ar no momento')
             }
+
         }
     }
 
