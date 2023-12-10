@@ -17,10 +17,11 @@ type TypeApi  = {
         password: string
     }
     product?: {
-        title: string,
-        description: string,
-        unit: number,
-        price: number
+        title?: string,
+        description?: string,
+        unit?: number,
+        price?: number, 
+        id?: number
     } | null
 }
 
@@ -33,7 +34,8 @@ const Api = async ({url, method, data, product} : TypeApi)=>{
             title: product?.title,
             description: product?.description,
             unit: product?.unit,
-            price: product?.price
+            price: product?.price,
+            id: product?.id
         },
         headers: {
             admin: data?.login,

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import InfoApi from "../components/InfoApi"
 import Product from "../components/Product"
 
@@ -14,8 +14,8 @@ const Home = ()=>{
             <InfoApi />
             <Product />
             <div className="my-3">
-                <button className="py-2 px-3 bg-green-500 rounded" onClick={button}>Criar produto</button>
-                <button className="py-2 px-3 bg-red-700 rounded mx-5"> Deletar</button>
+                <Link className="py-2 px-3 bg-green-500 rounded" to={'/create'}>Criar produto</Link>
+                <Link className="py-2 px-3 bg-red-700 rounded mx-5" to={'/delete'}> Deletar</Link>
                 <button className="py-2 px-3 bg-yellow-300 rounded">Modificar</button>
             </div>
         </div>

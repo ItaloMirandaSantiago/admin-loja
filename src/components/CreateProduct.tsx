@@ -8,7 +8,7 @@ const CreateProduct = ()=> {
     const [price, setPrice] = useState(0)
     const [unit, setUnit] = useState(0)
     const [description, setDescription] = useState('')
-    const [check, setCheck] = useState(false)
+    const [check, setCheck] = useState(true )
     async function enviar() {
         let save = localStorage.getItem('login')
 
@@ -20,9 +20,14 @@ const CreateProduct = ()=> {
         
             const res = await Api({url:'/admin', method:"post", data, product}) 
             console.log(res)  
-        }
-        if (check) {
-            navigate("/home")
+            if (res.data.sucess) {
+
+                if (check) {
+                    navigate("/home")
+                }else{
+                    
+                }
+            }
         }
     }
 
@@ -31,19 +36,19 @@ const CreateProduct = ()=> {
             <h1 className=" text-4xl font-extrabold mb-3">Cadastrar novo produto</h1>
             <form className="text-white">
                 <div className="flex flex-col items-center gap-3">
-                    <div className=" bg-slate-700 p-5 w-full">
+                    <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
                         <label className="text-white" htmlFor="title">Nome</label>
                         <input name="title" className=" bg-transparent border-b" type="text" value={title} onChange={(e)=> setTitle(e.target.value)}  />
                     </div>
-                    <div className=" bg-slate-700 p-5 w-full">
+                    <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
                         <label className="text-white" htmlFor="preco">Preço R$</label>
                         <input name="preco" className=" bg-transparent border-b"  type="number" value={price} onChange={(e)=> setPrice(parseFloat(e.target.value))} />
                     </div>
-                    <div className=" bg-slate-700 p-5 w-full">
+                    <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
                         <label className="text-white" htmlFor="unit">Unidades</label>
                         <input name="unit" className=" bg-transparent border-b"  type="number" value={unit} onChange={(e)=> setUnit(parseFloat(e.target.value))}  />
                     </div>
-                    <textarea name="description" className=" bg-transparent border p-2 bg-slate-700 w-full" placeholder="Descrição" rows={6} value={description} onChange={(e)=> {description.length < 200 && setDescription(e.target.value)}}  />
+                    <textarea name="description" className=" border p-2 bg-slate-700 w-full" placeholder="Descrição" rows={6} value={description} onChange={(e)=> {description.length < 200 && setDescription(e.target.value)}}  />
                     <div className="text-right w-full">
                         <p className="">{description.length}/200</p>
                     </div>
@@ -60,7 +65,7 @@ const CreateProduct = ()=> {
                     />
                     <span className="ml-2 text-gray-700">Continuar cadastrando produtos</span>
                 </label>
-                <button className="py-2 px-3 bg-green-600 rounded" onClick={enviar}>Concluir</button>
+                <button type="button" className="py-2 px-3 bg-green-600 rounded" onClick={enviar}>Concluir</button>
             </form>
         </div>
     )

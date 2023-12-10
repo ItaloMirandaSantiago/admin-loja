@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Login from './Routes/Login';
 import Home from './Routes/Home';
 import CreateProduct from './components/CreateProduct';
+import DeleteProduct from './components/DeleteProduct';
 
 function App() {
   
@@ -13,6 +14,7 @@ function App() {
           <Route path='/' element={<Login />} />
           <Route path='/home' element={<Home />} />
           <Route path='/create' element={<CreateProduct />} />
+          <Route path='/delete' element={<DeleteProduct />} />
           
       </Routes>
     </div>
