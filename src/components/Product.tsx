@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Api from "../AxiosConfig/Api"
+import DeleteProduct from "./DeleteProduct"
 
 type typeProduct = {
     title: string,
@@ -29,6 +30,7 @@ const Product = ()=>{
                     <th className="border border-custom max-w-[100px]">descrição</th>
                     <th className="border border-custom">Preço</th>
                     <th className="border border-custom">Unidades</th>
+                    <th className="border border-custom">Excluir</th>
                 </tr>
             </thead >
             <tbody className="border border-custom">
@@ -40,6 +42,8 @@ const Product = ()=>{
                             <th className="truncate max-w-[100px] border border-custom">{res.description}</th>
                             <th className="truncate max-w-[100px] border border-custom">{res.price}</th>
                             <th className="truncate max-w-[100px] border border-custom">{res.unit}</th>
+                            <th className="truncate max-w-[100px] border border-custom cursor-pointer" onClick={()=>{DeleteProduct(res.id)}}>Excluir</th>
+
                         </tr>
                     )
                 })}

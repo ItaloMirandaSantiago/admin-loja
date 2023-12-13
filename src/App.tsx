@@ -14,7 +14,6 @@ function App() {
           <Route path='/' element={<Login />} />
           <Route path='/home' element={<Home />} />
           <Route path='/create' element={<CreateProduct />} />
-          <Route path='/delete' element={<DeleteProduct />} />
           
       </Routes>
     </div>
