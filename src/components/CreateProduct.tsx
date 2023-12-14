@@ -18,21 +18,25 @@ const CreateProduct = ()=> {
                 title, price, unit, description
             }
             const data = JSON.parse(save)
-        
-            const res = await Api({url:'/admin', method:"post", data, product}) 
+            try{
+                const res = await Api({url:'/admin', method:"post", data, product}) 
 
-            if (res.data.sucess) {
-
-                if (check) {
-                    navigate("/home")
-                }else{
-                    console.log('else')
-                    setDescription('')
-                    setUnit(0)
-                    setTitle('')
-                    setPrice(0)
+                if (res.data.sucess) {
+    
+                    if (check) {
+                        navigate("/home")
+                    }else{
+                        console.log('else')
+                        setDescription('')
+                        setUnit(0)
+                        setTitle('')
+                        setPrice(0)
+                    }
                 }
+            }catch(err){
+                alert('servidor fora do ar')
             }
+            
         }else{
             let save = localStorage.getItem('login')
             if (save) {
@@ -41,7 +45,7 @@ const CreateProduct = ()=> {
                 }
                 const data = JSON.parse(save)
             
-                const res = await Api({url:'/admin', method:"post", data, product}) 
+                await Api({url:'/admin', method:"post", data, product}) 
             }
 
         }

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Api from "../AxiosConfig/Api"
 import DeleteProduct from "./DeleteProduct"
+import { EditContext } from "../context/EditContext"
 
 type typeProduct = {
     title: string,
@@ -12,6 +13,7 @@ type typeProduct = {
 
 const Product = ()=>{
     const [arrayproduct, setArrayproduct] = useState<typeProduct[] | null>(null)
+    const Edit = useContext(EditContext)
     useEffect(()=>{
         const productgetapi = async ()=>{
                 const res = await Api({url: "products", method: "get"})
@@ -44,7 +46,7 @@ const Product = ()=>{
                             <th className="truncate max-w-[100px] border border-custom">{res.price}</th>
                             <th className="truncate max-w-[100px] border border-custom">{res.unit}</th>
                             <th className="truncate max-w-[100px] border border-custom cursor-pointer" onClick={()=>{DeleteProduct(res.id)}}>Excluir</th>
-                            <th className="truncate max-w-[100px] border border-custom cursor-pointer" onClick={()=>{DeleteProduct(res.id)}}>Editar</th>
+                            <th className="truncate max-w-[100px] border border-custom cursor-pointer" onClick={()=>{Edit?.setEditResApi(res)}}>Editar</th>
 
                         </tr>
                     )
