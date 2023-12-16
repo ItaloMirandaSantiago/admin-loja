@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom"
 import { EditProvider } from './context/EditContext';
+import { RefreshProvider } from './context/Refresh';
 
 
 const root = ReactDOM.createRoot(
@@ -14,7 +15,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <EditProvider>
-        <App />
+        <RefreshProvider>
+          <App />
+        </RefreshProvider>
       </EditProvider>
     </BrowserRouter>
   </React.StrictMode>

@@ -2,25 +2,31 @@ import { useContext, useEffect, useState } from "react"
 import Api from "../AxiosConfig/Api"
 import DeleteProduct from "./DeleteProduct"
 import { EditContext } from "../context/EditContext"
+import {TypeProduct} from "../Types/TypeProduct"
+import { RefreshContext } from "../context/Refresh"
+import Loading from "./Loading"
 
-type typeProduct = {
-    title: string,
-    description: string,
-    unit: number,
-    price: number,
-    id: number
-}
+
 
 const Product = ()=>{
-    const [arrayproduct, setArrayproduct] = useState<typeProduct[] | null>(null)
+    const [arrayproduct, setArrayproduct] = useState<TypeProduct[] | null>(null)
     const Edit = useContext(EditContext)
+    const refresh = useContext(RefreshContext)
+
+    const productgetapi = async ()=>{
+        try{
+            const res = await Api({url: "products", method: "get"})
+            console.log(res)
+            setArrayproduct(res.data)
+        }catch(err){
+
+    }}
+
     useEffect(()=>{
-        const productgetapi = async ()=>{
-                const res = await Api({url: "products", method: "get"})
-                setArrayproduct(res.data.data)
-            }
         productgetapi()
-    }, [])
+        console.log('rodouuu')
+        refresh?.setRefresh(false)
+    }, [refresh?.refresh])
 
     
     return(
@@ -37,7 +43,7 @@ const Product = ()=>{
                 </tr>
             </thead >
             <tbody className="border border-custom">
-                {arrayproduct && arrayproduct.map((res)=>{
+                {arrayproduct ? arrayproduct.map((res)=>{
                     return(
                         <tr className="border border-custom" key={res.id}>
                             <th className="truncate max-w-[100px] border border-custom">{res.id}</th>
@@ -45,12 +51,15 @@ const Product = ()=>{
                             <th className="truncate max-w-[100px] border border-custom">{res.description}</th>
                             <th className="truncate max-w-[100px] border border-custom">{res.price}</th>
                             <th className="truncate max-w-[100px] border border-custom">{res.unit}</th>
-                            <th className="truncate max-w-[100px] border border-custom cursor-pointer" onClick={()=>{DeleteProduct(res.id)}}>Excluir</th>
+                            <th className="truncate max-w-[100px] border border-custom cursor-pointer" onClick={async ()=>{ await DeleteProduct(res.id); refresh?.setRefresh(true)}}>Excluir</th>
                             <th className="truncate max-w-[100px] border border-custom cursor-pointer" onClick={()=>{Edit?.setEditResApi(res)}}>Editar</th>
 
                         </tr>
                     )
-                })}
+                }) 
+                :
+                <Loading />
+                }
             </tbody>
         </table>
     )

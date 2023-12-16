@@ -1,19 +1,23 @@
 import { useState } from "react"
 import Api from "../AxiosConfig/Api"
 import { useNavigate } from "react-router-dom"
+import Loading from "./Loading"
 
 const CreateProduct = ()=> {
     const navigate = useNavigate()
     const [title, setTitle] = useState('')
-    const [price, setPrice] = useState(0)
+    const [price, setPrice] = useState('00.00')
     const [unit, setUnit] = useState(0)
     const [description, setDescription] = useState('')
     const [check, setCheck] = useState(true )
+    const [loading, setLoading] = useState<boolean>(false)
+    
     async function enviar() {
         let save = localStorage.getItem('login')
 
-        if (save !== null && price && title.length && description.length && unit > 0) {
-
+        if (save !== null && !isNaN(Number(price)) && title.length && description.length && unit > 0) {
+            console.log(Number(price))
+            
             const product = {
                 title, price, unit, description
             }
@@ -21,7 +25,7 @@ const CreateProduct = ()=> {
             try{
                 const res = await Api({url:'/admin', method:"post", data, product}) 
 
-                if (res.data.sucess) {
+                if (res.sucess) {
     
                     if (check) {
                         navigate("/home")
@@ -30,24 +34,17 @@ const CreateProduct = ()=> {
                         setDescription('')
                         setUnit(0)
                         setTitle('')
-                        setPrice(0)
+                        setPrice('00.00')
+                        setLoading(false)
                     }
                 }
             }catch(err){
-                alert('servidor fora do ar')
+                alert(`servidor fora do ar tesss${err}`)
             }
             
         }else{
-            let save = localStorage.getItem('login')
-            if (save) {
-                const product = {
-                    title, price, unit, description
-                }
-                const data = JSON.parse(save)
-            
-                await Api({url:'/admin', method:"post", data, product}) 
-            }
-
+            setLoading(false)
+            alert('parâmetros invalidos, verifique se não passou alguma letra em "unidade" ou "preço" e se preencheu todos os campos')
         }
     }
 
@@ -62,7 +59,7 @@ const CreateProduct = ()=> {
                     </div>
                     <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
                         <label className="text-white" htmlFor="preco">Preço R$</label>
-                        <input name="preco" className=" bg-transparent border-b"  type="number" value={price} onChange={(e)=> setPrice(parseFloat(e.target.value))} />
+                        <input name="preco" className=" bg-transparent border-b"  type="text" value={price} onChange={(e)=> setPrice(e.target.value)} />
                     </div>
                     <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
                         <label className="text-white" htmlFor="unit">Unidades</label>
@@ -85,9 +82,10 @@ const CreateProduct = ()=> {
                     />
                     <span className="ml-2 text-gray-700">Continuar cadastrando produtos</span>
                 </label>
-                <button type="button" className="py-2 px-3 bg-green-600 rounded mr-4" onClick={enviar}>Concluir</button>
+                <button type="button" className="py-2 px-3 bg-green-600 rounded mr-4" onClick={()=>{setLoading(true); enviar() }}>Concluir</button>
                 <button onClick={()=>navigate('/home')} className="py-2 mt-5 px-3 bg-red-600 hover:bg-slate-600 rounded">Voltar</button>
             </form>
+            {loading && <Loading />}
         </div>
     )
 }

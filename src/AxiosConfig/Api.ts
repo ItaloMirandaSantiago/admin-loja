@@ -1,4 +1,5 @@
 import axios from "axios";
+import { TypeProductOptional } from "../Types/TypeProduct";
 
 const ModalApi = axios.create({
     baseURL: 'http://localhost:4000',
@@ -16,17 +17,22 @@ type TypeApi  = {
         login: string,
         password: string
     }
-    product?: {
-        title?: string,
-        description?: string,
-        unit?: number,
-        price?: number, 
-        id?: number
-    } | null
+    product?: TypeProductOptional | null
 }
 
 const Api = async ({url, method, data, product} : TypeApi)=>{
     console.log('req')
+
+    if (!data) {
+        console.log('foi')
+        const save = localStorage.getItem('login')
+        if (save) {
+            data = JSON.parse(save)
+        }else{
+           alert('senha ou login não constam no sistema, volte a home')
+        }
+       
+    }
     const res = await ModalApi.request({
         url,
         method,
@@ -43,7 +49,7 @@ const Api = async ({url, method, data, product} : TypeApi)=>{
         }
         
     })
-    return res
+    return res.data
 }
 
 export default Api

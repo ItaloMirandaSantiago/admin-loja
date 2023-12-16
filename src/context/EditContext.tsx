@@ -1,20 +1,9 @@
 import { ReactNode, createContext, useState } from "react"
+import { TypeProduct, TypeProductOptional } from "../Types/TypeProduct"
 
 type EditContextType = {
-    EditResApi: {
-        title?: string,
-        description?: string,
-        unit?: number,
-        price?: number, 
-        id?: number
-    } | null
-    setEditResApi: (n: {
-        title: string,
-        description: string,
-        unit: number,
-        price: number, 
-        id: number
-    } | null) => void
+    EditResApi: TypeProductOptional | null
+    setEditResApi: (n: TypeProduct | null) => void
 }
 
 export const EditContext = createContext<EditContextType | null>(null)

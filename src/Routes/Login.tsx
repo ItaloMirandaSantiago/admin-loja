@@ -1,9 +1,6 @@
 import { useState } from "react"
 import Api from "../AxiosConfig/Api"
 import { useNavigate } from "react-router-dom"
-import { json } from "stream/consumers"
-
-
 
 const Login = ()=>{
     const [password, setPassword] = useState('')
@@ -16,14 +13,14 @@ const Login = ()=>{
             try{
                 const res = await Api({url: "/login", method: "get", data})
            
-                if (res.data.sucess) {
+                if (res.sucess) {
                     localStorage.setItem("login", JSON.stringify(data))
                     navigate('/home')
                 }else{
                     alert('senha ou login incorreto')
                 }
             }catch(err){
-                alert('a api está fora do ar no momento')
+                alert(`a api está fora do ar no momento ${err}`)
             }
 
         }
