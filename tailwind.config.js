@@ -6,11 +6,14 @@ module.exports = {
   theme: {
     extend: {
       borderColor: {
-        'custom' : '#000000',
+        
       },
       backgroundColor : {
-        'headeTable' : "#7f6c91"
-      }
+        'headeTable' : "##e1d1d1"
+      }, 
+      boxShadow : {
+        'customMenu' : '0px 7px 11px rgba(0,0,0, .7)'
+      },
     },
   },
   plugins: [],

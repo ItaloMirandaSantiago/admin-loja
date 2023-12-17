@@ -30,38 +30,40 @@ const Product = ()=>{
 
     
     return(
-        <table className="my-5 container border border-custom" border={1}>
-            <thead className="border border-custom bg-headeTable">
-                <tr className="border border-custom">
-                    <th className="border border-custom font-bold">id</th>
-                    <th className="border border-custom font-bold">nome</th>
-                    <th className="border border-custom max-w-[100px]">descrição</th>
-                    <th className="border border-custom">Preço</th>
-                    <th className="border border-custom">Unidades</th>
-                    <th className="border border-custom">Excluir</th>
-                    <th className="border border-custom">Editar</th>
-                </tr>
-            </thead >
-            <tbody className="border border-custom">
-                {arrayproduct ? arrayproduct.map((res)=>{
-                    return(
-                        <tr className="border border-custom" key={res.id}>
-                            <th className="truncate max-w-[100px] border border-custom">{res.id}</th>
-                            <th className="truncate max-w-[100px] border border-custom">{res.title}</th>
-                            <th className="truncate max-w-[100px] border border-custom">{res.description}</th>
-                            <th className="truncate max-w-[100px] border border-custom">{res.price}</th>
-                            <th className="truncate max-w-[100px] border border-custom">{res.unit}</th>
-                            <th className="truncate max-w-[100px] border border-custom cursor-pointer" onClick={async ()=>{ await DeleteProduct(res.id); refresh?.setRefresh(true)}}>Excluir</th>
-                            <th className="truncate max-w-[100px] border border-custom cursor-pointer" onClick={()=>{Edit?.setEditResApi(res)}}>Editar</th>
+        <div className="flex items-center justify-center">
+            <table className="my-5 container border border-custom h-10 bg-white" border={1}>
+                <thead className="border-b-2 border-custom ">
+                    <tr className=" border-custom">
+                        <th className=" border-custom font-bold">id</th>
+                        <th className=" border-custom font-bold">nome</th>
+                        <th className=" border-custom max-w-[100px]">descrição</th>
+                        <th className=" border-custom">Preço</th>
+                        <th className=" border-custom">Unidades</th>
+                        <th className=" border-custom">Excluir</th>
+                        <th className=" border-custom">Editar</th>
+                    </tr>
+                </thead >
+                <tbody className=" border-custom">
+                    {arrayproduct ? arrayproduct.map((res)=>{
+                        return(
+                            <tr className=" border-custom" key={res.id}>
+                                <th className="truncate max-w-[100px] opacity-50 border-custom bg-green-400">{res.id}</th>
+                                <th className="truncate max-w-[100px] opacity-50 border-custom">{res.title}</th>
+                                <th className="truncate max-w-[100px] opacity-50 border-custom">{res.description}</th>
+                                <th className="truncate max-w-[100px] opacity-50 border-custom">R$:{res.price}</th>
+                                <th className="truncate max-w-[100px] opacity-50 border-custom">{res.unit}</th>
+                                <th className="truncate max-w-[100px] opacity-50 border-custom cursor-pointer" onClick={async ()=>{ await DeleteProduct(res.id); refresh?.setRefresh(true)}}>Excluir</th>
+                                <th className="truncate max-w-[100px] opacity-50 border-custom cursor-pointer" onClick={()=>{Edit?.setEditResApi(res)}}>Editar</th>
 
-                        </tr>
-                    )
-                }) 
-                :
-                <Loading />
-                }
-            </tbody>
-        </table>
+                            </tr>
+                        )
+                    }) 
+                    :
+                    <Loading />
+                    }
+                </tbody>
+            </table>
+        </div>
     )
 }
 
