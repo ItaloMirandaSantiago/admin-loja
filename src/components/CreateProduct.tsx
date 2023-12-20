@@ -39,7 +39,8 @@ const CreateProduct = ()=> {
                     }
                 }
             }catch(err){
-                alert(`servidor fora do ar tesss${err}`)
+                alert(`servidor fora do ar! Error: 
+                ${err}`)
             }
             
         }else{
@@ -84,6 +85,7 @@ const CreateProduct = ()=> {
                 </label>
                 <button type="button" className="py-2 px-3 bg-green-600 rounded mr-4" onClick={()=>{setLoading(true); enviar() }}>Concluir</button>
                 <button onClick={()=>navigate('/home')} className="py-2 mt-5 px-3 bg-red-600 hover:bg-slate-600 rounded">Voltar</button>
+
             </form>
             {loading && <Loading />}
         </div>

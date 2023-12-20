@@ -3,7 +3,8 @@ export type TypeProductOptional = {
     description?: string,
     unit?: number,
     price?: string,
-    id?: number
+    id?: number,
+    discount?: string
 }
 
 export type TypeProduct = {
@@ -11,5 +12,6 @@ export type TypeProduct = {
     description: string,
     unit: number,
     price: string,
-    id: number
+    id: number,
+    discount: string
 }
