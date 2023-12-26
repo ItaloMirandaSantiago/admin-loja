@@ -1,7 +1,7 @@
 const CreatePromotion = ()=>{
     return(
         <div>
-            
+
         </div>
     )
 }

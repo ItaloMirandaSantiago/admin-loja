@@ -10,6 +10,7 @@ import Loading from "./Loading"
 
 const Product = ()=>{
     const [arrayproduct, setArrayproduct] = useState<TypeProduct[] | null>(null)
+    const [arraychekbox, setArrayCheck] = useState<number[]>([])
     const Edit = useContext(EditContext)
     const refresh = useContext(RefreshContext)
 
@@ -21,6 +22,24 @@ const Product = ()=>{
         }catch(err){
 
     }}
+
+    const CheckBox = (id: number)=>{
+        let verification = true
+        for (let i = 0; i < arraychekbox.length; i++) {
+            if (arraychekbox[i] === id) {
+                arraychekbox.splice(i, 1)
+                verification = false
+            }
+        }
+        if (!verification) {
+            console.log('veio do for')
+            console.log(arraychekbox)
+        }else{
+            console.log('for foi pro else')
+            setArrayCheck([...arraychekbox, id])
+        }
+        
+    }
 
     useEffect(()=>{
         productgetapi()
@@ -34,6 +53,7 @@ const Product = ()=>{
             <table className="my-5 container border border-custom h-10 bg-white" border={1}>
                 <thead className="border-b-2 border-custom ">
                     <tr className=" border-custom">
+                        <th className=" border-custom font-bold">check</th>
                         <th className=" border-custom font-bold">id</th>
                         <th className=" border-custom font-bold">nome</th>
                         <th className=" border-custom max-w-[100px]">descrição</th>
@@ -47,6 +67,7 @@ const Product = ()=>{
                     {arrayproduct ? arrayproduct.map((res)=>{
                         return(
                             <tr className=" border-custom" key={res.id}>
+                                <th className="truncate max-w-[100px] opacity-50 border-custom bg-white"><input type="checkbox" onChange={()=>{CheckBox(res.id)}} value={res.id}/></th>
                                 <th className="truncate max-w-[100px] opacity-50 border-custom bg-green-400">{res.id}</th>
                                 <th className="truncate max-w-[100px] opacity-50 border-custom">{res.title}</th>
                                 <th className="truncate max-w-[100px] opacity-50 border-custom">{res.description}</th>
