@@ -1,14 +1,21 @@
 import { Link, useNavigate } from "react-router-dom"
 import Product from "../components/Product"
 import GraphicInfor from "../components/GraphicInfor"
+import GraphicDoughnut from "../components/GraphicDoughnut"
 
 const Home = ()=>{
 
     return(
         <div className="flex flex-col bg-headeTable">
 
-            <div className="flex justify-center items-center mt-4">
-                <GraphicInfor />
+            <div className="flex flex-col mt-4 gap-3">
+                <div className="flex flex-row justify-around items-center">
+                    <GraphicDoughnut />
+                    <GraphicDoughnut />
+                </div>
+                <div className="flex justify-center">
+                    <GraphicInfor />
+                </div>
             </div>
 
             <h1 className=" text-center text-lg">Produtos Criados</h1>
