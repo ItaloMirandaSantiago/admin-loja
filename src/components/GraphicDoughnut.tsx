@@ -1,31 +1,43 @@
 import { Chart } from "chart.js/auto"
 import { useEffect, useRef } from "react"
 
-const GraphicDoughnut = ({data} : {data?: string})=>{
+type DataTypesDoughnut = {
+   solds: {
+        title: string,
+        description: string,
+        unit: number,
+        price: string,
+        id: number,
+        discount: string,
+        newprice?: number,
+        sold: number,
+   }[] | null,
+   titleGraphic: string
+    
+}
+
+const GraphicDoughnut = ({solds, titleGraphic} : DataTypesDoughnut)=>{
     const graphicRef = useRef(null)
 
     useEffect(()=>{
            
-        if (graphicRef.current) {
+        if (graphicRef.current && solds) {
             const ctx = graphicRef.current
 
-            const data = [300, 50, 100]
+            const data = solds.map(res=> res.sold)
+            const labels = solds.map(res=>res.title)
 
-            const colors = data.map(res=> res < 0 ? 'red' : 'green')
+            const colors = data.map(res=> `#${Math.floor(Math.random()*16777215).toString(16)}`)
+            
 
             const myChart = new Chart(ctx,{
                     type: 'doughnut',
                     data: {
-                        labels: ['teste1', 'teeste2', 'teste3'],
+                        labels,
                         datasets: [
                             {
-                                label: 'quebra',
                                 data,
-                                backgroundColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(54, 162, 235)',
-                                    'rgb(255, 205, 86)'
-                                  ]
+                                backgroundColor: colors
                             }
                         ]
                     }
@@ -34,11 +46,11 @@ const GraphicDoughnut = ({data} : {data?: string})=>{
             return ()=>{
                 myChart.destroy()
             }
-    }})
+    }}, [solds])
 
     return(
         <div className=" w-2/5 bg-graphic flex-col items-center justify-center rounded-md text-center">
-            <h2>Lucros/Prejuízos</h2>
+            <h2>{titleGraphic}</h2>
             <div className=" flex justify-center">
                 <canvas ref={graphicRef} className="w-90% max-w-sm max-h-96" id="graphic"></canvas>
             </div>

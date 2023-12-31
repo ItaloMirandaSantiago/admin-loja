@@ -1,27 +1,35 @@
 import { Chart } from "chart.js/auto"
 import { useEffect, useRef } from "react"
 
-const GraphicInfor = ()=>{
+type DateType = {
+    data: {
+        id: number, 
+        data: string,
+        result: number
+    }[] | null
+}
+
+const GraphicInfor = ({data} : DateType)=>{
 
     const graphicRef = useRef(null)
 
     useEffect(()=>{
         
-        if (graphicRef.current) {
+        if (graphicRef.current && data) {
             const ctx = graphicRef.current
 
-            const data = [10,20,30,]
-
-            const colors = data.map(res=> res < 0 ? 'red' : 'green')
+            const colors = data.map(res=> res.result < 0 ? 'red' : 'green')
+            const labels = data.map(res=>res.data)
+            const results = data.map(res => res.result)
 
             const myChart = new Chart(ctx,{
                     type: 'bar',
                     data: {
-                        labels: ['teste1', 'teeste2', 'teste3'],
+                        labels,
                         datasets: [
                             {
                                 label: 'Lucros/Prejuizos',
-                                data,
+                                data: results,
                                 backgroundColor: colors
                             }
                         ]
@@ -33,7 +41,7 @@ const GraphicInfor = ()=>{
             }
         }
         
-    }, [])
+    }, [data])
 
     return(
         <div className=" w-90% bg-graphic text-center">
