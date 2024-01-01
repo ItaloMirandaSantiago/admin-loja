@@ -49,8 +49,8 @@ const GraphicDoughnut = ({solds, titleGraphic} : DataTypesDoughnut)=>{
     }}, [solds])
 
     return(
-        <div className=" w-2/5 bg-graphic flex-col items-center justify-center rounded-md text-center">
-            <h2>{titleGraphic}</h2>
+        <div className="text-center ">
+            <h2 className=" text-lg">{titleGraphic}</h2>
             <div className=" flex justify-center">
                 <canvas ref={graphicRef} className="w-90% max-w-sm max-h-96" id="graphic"></canvas>
             </div>

@@ -44,10 +44,10 @@ const GraphicInfor = ({data} : DateType)=>{
     }, [data])
 
     return(
-        <div className=" w-90% bg-graphic text-center">
+        <div className=" w-full text-center">
             <h2>Lucros/Prejuízos</h2>
             <div>
-                <canvas ref={graphicRef} className=" w-90%" id="graphic"></canvas>
+                <canvas ref={graphicRef} className=" " id="graphic"></canvas>
             </div>
         </div>
     )
