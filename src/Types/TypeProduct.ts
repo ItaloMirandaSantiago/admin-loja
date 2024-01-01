@@ -4,7 +4,8 @@ export type TypeProductOptional = {
     unit?: number,
     price?: string,
     id?: number,
-    discount?: string
+    discount?: string,
+    productionprice?: string
 }
 
 export type TypeProduct = {
@@ -13,5 +14,6 @@ export type TypeProduct = {
     unit: number,
     price: string,
     id: number,
-    discount: string
+    discount: string,
+    productionprice: string
 }

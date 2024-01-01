@@ -41,6 +41,7 @@ const Api = async ({url, method, data, product} : TypeApi)=>{
             description: product?.description,
             unit: product?.unit,
             price: product?.price,
+            productionprice: product?.productionprice,
             id: product?.id
         },
         headers: {

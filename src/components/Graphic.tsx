@@ -33,7 +33,6 @@ const Graphic = ()=>{
                 </div>
                 <div className="flex flex-col w-full">
                     <GraphicInfor data={resApiGraphicBar}/>
-                    <GraphicInfor data={resApiGraphicBar}/>
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ const CreateProduct = ()=> {
     const navigate = useNavigate()
     const [title, setTitle] = useState('')
     const [price, setPrice] = useState('00.00')
+    const [productionprice, setProductionPrice] = useState('00.00')
     const [unit, setUnit] = useState(0)
     const [description, setDescription] = useState('')
     const [check, setCheck] = useState(true )
@@ -19,7 +20,7 @@ const CreateProduct = ()=> {
             console.log(Number(price))
             
             const product = {
-                title, price, unit, description
+                title, price, unit, description, productionprice
             }
             const data = JSON.parse(save)
             try{
@@ -35,10 +36,16 @@ const CreateProduct = ()=> {
                         setUnit(0)
                         setTitle('')
                         setPrice('00.00')
+                        setProductionPrice('00.00')
                         setLoading(false)
                     }
+                }else{
+                    console.log(res)
+                    setLoading(false)
+                    alert('Parâmetros invalídos')
                 }
             }catch(err){
+                setLoading(false)
                 alert(`servidor fora do ar! Error: 
                 ${err}`)
             }
@@ -50,7 +57,7 @@ const CreateProduct = ()=> {
     }
 
     return(
-        <div className="flex flex-col justify-center items-center h-screen">
+        <div className="flex flex-col justify-center items-center">
             <h1 className=" text-4xl font-extrabold mb-3">Cadastrar novo produto</h1>
             <form className="text-white">
                 <div className="flex flex-col items-center gap-3">
@@ -63,12 +70,16 @@ const CreateProduct = ()=> {
                         <input name="preco" className=" bg-transparent border-b"  type="text" value={price} onChange={(e)=> setPrice(e.target.value)} />
                     </div>
                     <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
+                        <label className="text-white" htmlFor="preco">Preço de produção/compra base R$</label>
+                        <input name="preco" className=" bg-transparent border-b"  type="text" value={productionprice} onChange={(e)=> setProductionPrice(e.target.value)} />
+                    </div>
+                    <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
                         <label className="text-white" htmlFor="unit">Unidades</label>
                         <input name="unit" className=" bg-transparent border-b"  type="number" value={unit} onChange={(e)=> setUnit(parseFloat(e.target.value))}  />
                     </div>
-                    <textarea name="description" className=" border p-2 bg-slate-700 w-full" placeholder="Descrição" rows={6} value={description} onChange={(e)=> {description.length < 200 && setDescription(e.target.value)}}  />
+                    <textarea name="description" className=" border p-2 bg-slate-700 w-full" placeholder="Descrição" rows={6} value={description} onChange={(e)=> {setDescription(e.target.value.length < 200 ? e.target.value : e.target.value.substring(0, 200))}}  />
                     <div className="text-right w-full">
-                        <p className="">{description.length}/200</p>
+                        <p className=" text-black">{description.length}/200</p>
                     </div>
 
                 </div>
