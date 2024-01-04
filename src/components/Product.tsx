@@ -92,7 +92,7 @@ const Product = ()=>{
                         {arraychekbox.length <= 0? 
                             <button className="py-2 px-3 bg-yellow-300 rounded" disabled={false}>Criar Promoção</button>              
                             :
-                            <Link className="py-3 px-3 bg-yellow-500 rounded" to={'/createpromotion'}>Criar Promoção</Link>    
+                            <Link className="py-3 px-3 bg-yellow-500 rounded" to={`/createpromotion/${encodeURIComponent(JSON.stringify(arraychekbox))}`}>Criar Promoção</Link>    
                         }
                         
                     </div>

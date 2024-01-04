@@ -20,7 +20,7 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/create' element={<CreateProduct />} />
           <Route path='/promotion' element={<Promotion />} />
-          <Route path='/createpromotion' element={<CreatePromotion />} />
+          <Route path='/createpromotion/:arrayproduct' element={<CreatePromotion />} />
       </Routes>
       {Edit?.EditResApi && 
        <EditProduct />
