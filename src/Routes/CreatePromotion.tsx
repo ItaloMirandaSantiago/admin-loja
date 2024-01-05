@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Api from "../AxiosConfig/Api"
 import { TypeProduct } from "../Types/TypeProduct"
+import Product from "../components/Product"
 
 const CreatePromotion= ()=>{
     const { arrayproductstring }: { arrayproductstring?: string } = useParams()
-    const [products, setProducts] = useState<TypeProduct[] | null>(null)
+    const [products, setProducts] = useState<TypeProduct[] | []>([])
     const [newprice, setNewprice] = useState<string>('')
     const [date, setDate] = useState<number | null>(null)
 
@@ -32,18 +33,29 @@ const CreatePromotion= ()=>{
         <div className=" w-screen text-center">
             <h1>Criar Promoção</h1>
             <div className="flex justify-center items-center">
-                {products && 
+                {products.length ?
                 <div className=" bg-headeTable w-90%">
-                    <div className="flex flex-row bg-slate-600 rounded-md  gap-4">
-                        <ul>
-                            <li>Codigo: {products[0].id}</li>
-                            <li>Titulo : {products[0].title}</li>
-                            <li>Descrição: {products[0].description}</li>
-                            <li>Preço: {products[0].price}</li>
-                            <li>Unidades: {products[0].unit}</li>
-                            <li>Custo de produção: {products[0].productionprice}</li>
-                        </ul>   
-                    </div>
+                    <table className="w-full border border-custom bg-white" border={1}>
+                    <thead className="border-b-2 border-custom ">
+                        <tr className=" border-custom">
+                            <th className=" border-custom font-bold">id</th>
+                            <th className=" border-custom font-bold">nome</th>
+                            <th className=" border-custom max-w-[100px]">descrição</th>
+                            <th className=" border-custom">Preço</th>
+                            <th className=" border-custom">Unidades</th>
+                        </tr>
+                    </thead >
+                    <tbody className=" border-custom">
+                                <tr className=" border-custom">
+                                    <th className="truncate max-w-[100px] opacity-50 border-custom bg-green-400">{products[0].id}</th>
+                                    <th className="truncate max-w-[100px] opacity-50 border-custom">{products[0].title}</th>
+                                    <th className="truncate max-w-[100px] opacity-50 border-custom">{products[0].description}</th>
+                                    <th className="truncate max-w-[100px] opacity-50 border-custom">R$:{products[0].price}</th>
+                                    <th className="truncate max-w-[100px] opacity-50 border-custom">{products[0].unit}</th>
+                                </tr>
+                         
+                    </tbody>
+                </table>
                     <div className="mt-5">
                         <div className="flex flex-row justify-around items-center">
                             <div className="flex flex-col text-left">
@@ -75,6 +87,11 @@ const CreatePromotion= ()=>{
                         </div>
                         <button className="p-3 border bg-green-600 hover:bg-green-700 rounded-md" onClick={()=>getproduct(products[0])}>Enviar</button>
                     </div>
+                </div>
+                :
+                <div className=" bg-yellow-400 text-black rounded p-3 w-90%">
+                    <h2>Escolha qual produto deseja adicionnar uma promoção</h2>    
+                    <Product />
                 </div>}
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Api from "../AxiosConfig/Api"
 import { useNavigate } from "react-router-dom"
 import Loading from "./Loading"
@@ -55,6 +55,18 @@ const CreateProduct = ()=> {
             alert('parâmetros invalidos, verifique se não passou alguma letra em "unidade" ou "preço" e se preencheu todos os campos')
         }
     }
+
+    const verificationmonew = (e: string)=>{
+        console.log(e)
+        if (!isNaN(parseFloat(e))) {
+            const formattedValue = parseFloat(price).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).replace('R$', '');
+              setPrice(formattedValue)
+        }
+    }
+
 
     return(
         <div className="flex flex-col justify-center items-center">

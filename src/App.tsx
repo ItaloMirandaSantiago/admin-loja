@@ -9,6 +9,7 @@ import Menu from './components/Menu';
 import { EditContext } from './context/EditContext';
 import EditProduct from './components/EditProduct';
 import CreatePromotion from './Routes/CreatePromotion';
+import Sale from './components/Sale';
 
 function App() {
   const Edit = useContext(EditContext)
@@ -20,7 +21,8 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/create' element={<CreateProduct />} />
           <Route path='/promotion' element={<Promotion />} />
-          <Route path='/createpromotion/:arrayproductstring' element={<CreatePromotion />} />
+          <Route path='/sale' element={<Sale />} />
+          <Route path='/createpromotion/:arrayproductstring?' element={<CreatePromotion />} />
       </Routes>
       {Edit?.EditResApi && 
        <EditProduct />
