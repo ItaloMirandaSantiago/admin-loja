@@ -9,7 +9,7 @@ module.exports = {
         "90%" : '90%'
       },
       backgroundColor : {
-        'headeTable' : "##e1d1d1",
+        'headeTable' : "#e1d1d1",
         'graphic' : '#bfb8b8'
       }, 
       boxShadow : {

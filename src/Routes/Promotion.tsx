@@ -34,7 +34,8 @@ const Promotion = ()=>{
                         <th className=" border-custom font-bold">id</th>
                         <th className=" border-custom font-bold">nome</th>
                         <th className=" border-custom max-w-[100px]">descrição</th>
-                        <th className=" border-custom">Preço</th>
+                        <th className=" border-custom">Preço original</th>
+                        <th className=" border-custom">Preço atual</th>
                         <th className=" border-custom">Unidades</th>
                         <th className=" border-custom">Promoção</th>
 
@@ -48,6 +49,7 @@ const Promotion = ()=>{
                                 <th className="truncate max-w-[100px] opacity-50 border-custom">{res.title}</th>
                                 <th className="truncate max-w-[100px] opacity-50 border-custom">{res.description}</th>
                                 <th className="truncate max-w-[100px] opacity-50 border-custom">R$:{res.price}</th>
+                                <th className="truncate max-w-[100px] opacity-50 border-custom">R$:{res.newprice}</th>
                                 <th className="truncate max-w-[100px] opacity-50 border-custom">{res.unit}</th>
                                 <th className="truncate max-w-[100px] opacity-50 border-custom">{res.discount}</th>
                             </tr>

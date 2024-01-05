@@ -42,7 +42,10 @@ const Api = async ({url, method, data, product} : TypeApi)=>{
             unit: product?.unit,
             price: product?.price,
             productionprice: product?.productionprice,
-            id: product?.id
+            id: product?.id,
+            newprice: product?.newprice,
+            discount: product?.discount
+
         },
         headers: {
             admin: data?.login,

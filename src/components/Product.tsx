@@ -53,7 +53,7 @@ const Product = ()=>{
         <div className="flex items-center justify-center">
             
             {arrayproduct ? 
-            <div className="my-5 container border border-custom h-10 bg-white pb-3">
+            <div className="my-5 container border border-custom bg-white pb-3">
                 <table className="container border border-custom bg-white" border={1}>
                     <thead className="border-b-2 border-custom ">
                         <tr className=" border-custom">
