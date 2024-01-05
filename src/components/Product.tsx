@@ -11,7 +11,7 @@ import { Link } from "react-router-dom"
 
 const Product = ()=>{
     const [arrayproduct, setArrayproduct] = useState<TypeProduct[] | null>(null)
-    const [arraychekbox, setArrayCheck] = useState<number[]>([])
+    const [arraychekbox, setArrayCheck] = useState<TypeProduct[] | []>([])
     const Edit = useContext(EditContext)
     const refresh = useContext(RefreshContext)
 
@@ -24,10 +24,10 @@ const Product = ()=>{
 
     }}
 
-    const CheckBox = (id: number)=>{
+    const CheckBox = (id: TypeProduct)=>{
         let verification = true
         for (let i = 0; i < arraychekbox.length; i++) {
-            if (arraychekbox[i] === id) {
+            if (arraychekbox[i].id === id.id) {
                 const deleteId = arraychekbox.filter(res=> res !== id)
 
                 setArrayCheck(deleteId)
@@ -71,7 +71,7 @@ const Product = ()=>{
                         {arrayproduct.map((res)=>{
                             return(
                                 <tr className=" border-custom" key={res.id}>
-                                    <th className="truncate max-w-[100px] opacity-50 border-custom bg-white"><input type="checkbox" onChange={()=>{CheckBox(res.id)}} value={res.id}/></th>
+                                    <th className="truncate max-w-[100px] opacity-50 border-custom bg-white"><input type="checkbox" onChange={()=>{CheckBox(res)}} value={res.id}/></th>
                                     <th className="truncate max-w-[100px] opacity-50 border-custom bg-green-400">{res.id}</th>
                                     <th className="truncate max-w-[100px] opacity-50 border-custom">{res.title}</th>
                                     <th className="truncate max-w-[100px] opacity-50 border-custom">{res.description}</th>
