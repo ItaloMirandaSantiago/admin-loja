@@ -17,10 +17,11 @@ type TypeApi  = {
         login: string,
         password: string
     }
-    product?: TypeProductOptional | null
+    product?: TypeProductOptional | null,
+    products?: TypeProductOptional[]
 }
 
-const Api = async ({url, method, data, product} : TypeApi)=>{
+const Api = async ({url, method, data, product, products} : TypeApi)=>{
     console.log('req')
 
     if (!data) {
@@ -44,7 +45,8 @@ const Api = async ({url, method, data, product} : TypeApi)=>{
             productionprice: product?.productionprice,
             id: product?.id,
             newprice: product?.newprice,
-            discount: product?.discount
+            discount: product?.discount,
+            products
 
         },
         headers: {

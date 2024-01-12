@@ -9,19 +9,23 @@ import Menu from './components/Menu';
 import { EditContext } from './context/EditContext';
 import EditProduct from './components/EditProduct';
 import CreatePromotion from './Routes/CreatePromotion';
+import SaleorPurchase from './components/Saleorpurchase';
 import Sale from './components/Sale';
+import Purchase from './components/Purchase';
 
 function App() {
   const Edit = useContext(EditContext)
   return (
-    <div className="App ">
+    <div className="App overflow-hidden ">
       <Menu />
       <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/home' element={<Home />} />
           <Route path='/create' element={<CreateProduct />} />
           <Route path='/promotion' element={<Promotion />} />
-          <Route path='/sale' element={<Sale />} />
+          <Route path='/saleorpurchase' element={<SaleorPurchase />} />
+          <Route path='/sale/:arrayproductstring?' element={<Sale />} />
+          <Route path='/purchase/:arrayproductstring?' element={<Purchase />} />
           <Route path='/createpromotion/:arrayproductstring?' element={<CreatePromotion />} />
       </Routes>
       {Edit?.EditResApi && 

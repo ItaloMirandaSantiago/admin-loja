@@ -8,7 +8,9 @@ type productsIdorSale = {
     sale: number
 }
 
-const Sale = ()=>{
+
+const Purchase = ()=>{
+
     const { arrayproductstring }: { arrayproductstring?: string } = useParams()
     const [products, setProducts] = useState<TypeProduct[] | []>([])
     const [productsIdorSale, setproductsIdorSale] = useState<productsIdorSale[] | []>([])
@@ -23,7 +25,7 @@ const Sale = ()=>{
 
     async function SaleProductApi() {
         try {
-            const resapi =  await Api({url: "products", method:"put", products: productsIdorSale})
+            const resapi =  await Api({url: "purchase", method:"put", products: productsIdorSale})
             console.log(resapi)
             if (resapi.sucess) {
                 navigate('/home')
@@ -37,7 +39,7 @@ const Sale = ()=>{
 
     function inputvalueid(product: TypeProduct, sale: number) {
         let verification = true
-        if(product.unit >= sale && productsIdorSale){
+        if(productsIdorSale){
             for (let i = 0; i < productsIdorSale.length; i++) {
                 if (productsIdorSale[i].id === product.id) {
                     verification = false
@@ -56,9 +58,16 @@ const Sale = ()=>{
         }
     }
 
+    useEffect(()=>{
+        console.log(productsIdorSale)
+    }, [productsIdorSale])
+
     return(
         <div className="flex flex-col justify-center items-center gap-5">
-            <h2>Escolha a quantidade de produtos para serem vendidos</h2>
+            <h2>Escolha a quantidade para serem comprados</h2>
+
+
+
             {products.length > 0 && 
             <div>
 
@@ -90,12 +99,17 @@ const Sale = ()=>{
                 </table>
 
                 <div className="flex justify-center items-center">
-                    <button className="py-3 rounded-md bg-green-400 hover:bg-green-700" onClick={SaleProductApi}>Vender</button>
+                    <button className="py-3 rounded-md bg-green-400 hover:bg-green-700" onClick={SaleProductApi}>Comprar</button>
                 </div>
             </div>
             }
         </div>
+
+
+
+
+
     )
 }
 
-export default Sale
+export default Purchase

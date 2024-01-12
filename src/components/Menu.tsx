@@ -6,7 +6,7 @@ const Menu = ()=>{
             <ul className="flex flex-row justify-around items-center justify-items-center">
                <li><Link to={'/home'}>Home</Link></li>
                <li><Link to={'/promotion'}>Promoções</Link></li>
-               <li><Link to={'/sale'}>Venda</Link></li>
+               <li><Link to={'/saleorpurchase'}>Venda/Compra</Link></li>
                <li><Link to={'/'}>Lucros/Despesas</Link></li>
             </ul>
         </div>

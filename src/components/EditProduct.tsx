@@ -10,13 +10,14 @@ const EditProduct = ()=>{
     const [title, setTitle] = useState(Edit?.EditResApi?.title)
     const [price, setPrice] = useState(Edit?.EditResApi?.price)
     const [unit, setUnit] = useState(Edit?.EditResApi?.unit)
+    const [productionprice, setProductionPrice] = useState(Edit?.EditResApi?.productionprice)
     const [description, setDescription] = useState(Edit?.EditResApi?.description ? Edit?.EditResApi?.description : '')
     const refresh = useContext(RefreshContext)
     const [loading, setLoading] = useState<boolean>(false)
 
     async function put() {
         try{
-           const response = await Api({url: 'edit', method: 'put', product: {title, description, unit, price, id: Edit?.EditResApi?.id}})
+           const response = await Api({url: 'edit', method: 'put', product: {title, description, unit, price, id: Edit?.EditResApi?.id, productionprice}})
            if (response.sucess) {
                 Edit?.setEditResApi(null)
                 refresh?.setRefresh(true)
@@ -42,8 +43,8 @@ const EditProduct = ()=>{
                             <input name="preco" className=" bg-transparent border-b w-3/4"  type="text" value={price} onChange={(e)=> setPrice(e.target.value)} />
                         </div>
                         <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
-                            <label className="text-white" htmlFor="unit">Unidades</label>
-                            <input name="unit" className=" bg-transparent border-b w-3/4"  type="number" value={unit} onChange={(e)=> setUnit(parseFloat(e.target.value))}  />
+                            <label className="text-white" htmlFor="preco">Preço de produção/compra base R$</label>
+                            <input name="preco" className=" bg-transparent border-b"  type="text" value={productionprice} onChange={(e)=> setProductionPrice(e.target.value)} />
                         </div>
                         <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
                             <label className="text-white" htmlFor="unit">Unidades</label>
