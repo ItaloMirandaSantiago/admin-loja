@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import Product from "../components/Product"
 import Graphic from "../components/Graphic"
 

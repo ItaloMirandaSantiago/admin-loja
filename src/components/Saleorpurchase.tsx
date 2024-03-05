@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import Api from "../AxiosConfig/Api"
 import { TypeProduct } from "../Types/TypeProduct"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Loading from "./Loading"
 
 const SaleOrPurchase = ()=>{
     const [arrayproduct, setArrayproduct] = useState<TypeProduct[] | null>(null)
     const [arraychekbox, setArrayCheck] = useState<TypeProduct[] | []>([])
+    const navigate = useNavigate()
     
     const SaleProducts = async ({id} : {id: number})=>{
         await Api({url: "products", method: 'put', product: {id}})
@@ -18,7 +19,7 @@ const SaleOrPurchase = ()=>{
             console.log(res)
             setArrayproduct(res.data)
         }catch(err){
-
+            navigate('/')
     }}
 
     const CheckBox = (id: TypeProduct)=>{

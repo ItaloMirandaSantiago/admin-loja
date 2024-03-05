@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Api from "../AxiosConfig/Api"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Login = ()=>{
     const [password, setPassword] = useState('')
@@ -33,6 +33,7 @@ const Login = ()=>{
                 <input className="bg-transparent border-b border-white" value={login} onChange={(e)=>setLogin(e.target.value)} type="name" placeholder="login" />
                 <input className="bg-transparent border-b border-white" value={password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Senha"/>
                 <button className="bg-blue-700 py-2 px-6 rounded-lg" onClick={Enter}>Entrar</button>
+                <p>Não tem conta? Crie uma <Link className="underline text-blue-700 cursor-pointer" to={'/CreateCount'}>aqui</Link></p>
             </div>
         </div>
     )

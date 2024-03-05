@@ -5,8 +5,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 
 body{
-
   background-color: azure;
+}
+
+.title-CreateProduct{
+  color: #3b566e;
+}
+
+.input_tap{
+  display:block;
+	width:100%;
+	line-height:28px;
+	height:50px;
+	font-size:16px;
+	border:1px solid rgba(31,140,235,0.50);
+	padding:10px 25px;	
+	background:none;
+	color:#6f8ba4;
+	border-radius:4px;
+	transition:all 500ms ease;
+	-webkit-transition:all 500ms ease;
+	-ms-transition:all 500ms ease;
+	-o-transition:all 500ms ease;	
 }
 
 *{

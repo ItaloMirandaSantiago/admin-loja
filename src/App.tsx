@@ -10,6 +10,7 @@ import { EditContext } from './context/EditContext';
 import EditProduct from './components/EditProduct';
 import CreatePromotion from './Routes/CreatePromotion';
 import SaleorPurchase from './components/Saleorpurchase';
+import CreateCount from './Routes/CreateCount';
 import Sale from './components/Sale';
 import Purchase from './components/Purchase';
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' element={<Login />} />
           <Route path='/home' element={<Home />} />
           <Route path='/create' element={<CreateProduct />} />
+          <Route path='/CreateCount' element={<CreateCount />} />
           <Route path='/promotion' element={<Promotion />} />
           <Route path='/saleorpurchase' element={<SaleorPurchase />} />
           <Route path='/sale/:arrayproductstring?' element={<Sale />} />

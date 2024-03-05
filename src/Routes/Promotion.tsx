@@ -15,7 +15,7 @@ const Promotion = ()=>{
             console.log(res)
             setArrayPromotion(res.data)
         }catch(err){
-            console.log(err)
+            navigate('/')
     }}
 
     useEffect(()=>{

@@ -44,7 +44,6 @@ const Product = ()=>{
 
     useEffect(()=>{
         productgetapi()
-        console.log('rodouuu')
         refresh?.setRefresh(false)
     }, [refresh?.refresh])
 

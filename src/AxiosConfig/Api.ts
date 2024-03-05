@@ -1,5 +1,6 @@
 import axios from "axios";
 import { TypeProductOptional } from "../Types/TypeProduct";
+import { useNavigate } from "react-router-dom";
 
 const ModalApi = axios.create({
     baseURL: 'http://localhost:4000',
@@ -22,7 +23,7 @@ type TypeApi  = {
 }
 
 const Api = async ({url, method, data, product, products} : TypeApi)=>{
-    console.log('req')
+    const navigate = useNavigate()
 
     if (!data) {
         console.log('foi')
@@ -30,7 +31,8 @@ const Api = async ({url, method, data, product, products} : TypeApi)=>{
         if (save) {
             data = JSON.parse(save)
         }else{
-           alert('senha ou login não constam no sistema, volte a home')
+           alert('senha ou login não constam no sistema, volte ao menu de login')
+           navigate('/')
         }
        
     }

@@ -6,8 +6,8 @@ import Loading from "./Loading"
 const CreateProduct = ()=> {
     const navigate = useNavigate()
     const [title, setTitle] = useState('')
-    const [price, setPrice] = useState('00.00')
-    const [productionprice, setProductionPrice] = useState('00.00')
+    const [price, setPrice] = useState<string>('')
+    const [productionprice, setProductionPrice] = useState<string>('')
     const [unit, setUnit] = useState(0)
     const [description, setDescription] = useState('')
     const [check, setCheck] = useState(true )
@@ -35,8 +35,8 @@ const CreateProduct = ()=> {
                         setDescription('')
                         setUnit(0)
                         setTitle('')
-                        setPrice('00.00')
-                        setProductionPrice('00.00')
+                        setPrice('')
+                        setProductionPrice('')
                         setLoading(false)
                     }
                 }else{
@@ -70,26 +70,19 @@ const CreateProduct = ()=> {
 
     return(
         <div className="flex flex-col justify-center items-center">
-            <h1 className=" text-4xl font-extrabold mb-3">Cadastrar novo produto</h1>
-            <form className="text-white">
+            <h1 className=" mt-3 text-4xl font-extrabold mb-3 title-CreateProduct">Cadastrar novo produto</h1>
+            <form className="text-white mb-3">
                 <div className="flex flex-col items-center gap-3">
-                    <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
-                        <label className="text-white" htmlFor="title">Nome</label>
-                        <input name="title" className=" bg-transparent border-b" type="text" value={title} onChange={(e)=> setTitle(e.target.value)}  />
-                    </div>
-                    <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
-                        <label className="text-white" htmlFor="preco">Preço R$</label>
-                        <input name="preco" className=" bg-transparent border-b"  type="text" value={price} onChange={(e)=> setPrice(e.target.value)} />
-                    </div>
-                    <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
-                        <label className="text-white" htmlFor="preco">Preço de produção/compra base R$</label>
-                        <input name="preco" className=" bg-transparent border-b"  type="text" value={productionprice} onChange={(e)=> setProductionPrice(e.target.value)} />
-                    </div>
-                    <div className=" bg-slate-700 p-5 w-full flex justify-center items-center gap-3">
-                        <label className="text-white" htmlFor="unit">Unidades</label>
-                        <input name="unit" className=" bg-transparent border-b"  type="number" value={unit} onChange={(e)=> setUnit(parseFloat(e.target.value))}  />
-                    </div>
-                    <textarea name="description" className=" border p-2 bg-slate-700 w-full" placeholder="Descrição" rows={6} value={description} onChange={(e)=> {setDescription(e.target.value.length < 200 ? e.target.value : e.target.value.substring(0, 200))}}  />
+
+                        <input name="title" className="input_tap" type="text" value={title} onChange={(e)=> setTitle(e.target.value)} placeholder="Nome"  />
+                    
+                        <input name="preco" className="input_tap"  type="text" value={price} onChange={(e)=> setPrice(e.target.value)} placeholder="Preço" />
+                    
+                        <input name="preco" className="input_tap"  type="text" value={productionprice} onChange={(e)=> setProductionPrice(e.target.value)} placeholder="Preço de produção/compra" />
+                    
+                        <input name="unit" className="input_tap"  type="number" value={unit} onChange={(e)=> setUnit(parseFloat(e.target.value))} placeholder="Unidades"  />
+                    
+                    <textarea name="description" className=" border p-2 border-blue-600 w-full" placeholder="Descrição" rows={6} value={description} onChange={(e)=> {setDescription(e.target.value.length < 200 ? e.target.value : e.target.value.substring(0, 200))}}  />
                     <div className="text-right w-full">
                         <p className=" text-black">{description.length}/200</p>
                     </div>

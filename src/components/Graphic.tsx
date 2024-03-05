@@ -2,8 +2,10 @@ import { useEffect, useState } from "react"
 import Api from "../AxiosConfig/Api"
 import GraphicDoughnut from "./GraphicDoughnut"
 import GraphicInfor from "./GraphicInfor"
+import { useNavigate } from "react-router-dom"
 
 const Graphic = ()=>{
+    const navigate = useNavigate()
     const [resApiGraphicBar, setresApiGraphicBar] = useState<any>([])
     const [resApiGraphicDoughmut, setResApiGraphicDoughmut] = useState<any>([])
     const [resApiGraphicDoughmutLoss, setResApiGraphicDoughmutLoss] = useState<any>([])
@@ -17,7 +19,8 @@ const Graphic = ()=>{
             setResApiGraphicDoughmutLoss(resApi.loss)
 
         }catch(err){
-            alert('não foi possivel se conectar a api, tente novamente mais tarde')
+            
+            navigate('/')
         }
     }
 
