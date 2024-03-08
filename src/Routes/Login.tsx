@@ -12,7 +12,7 @@ const Login = ()=>{
             const data = {login, password}
             try{
                 const res = await Api({url: "/login", method: "get", data})
-           
+                console.log(res)
                 if (res.sucess) {
                     localStorage.setItem("login", JSON.stringify(data))
                     navigate('/home')

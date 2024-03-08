@@ -3,6 +3,7 @@ import Api from "../AxiosConfig/Api";
 import Loading from "../components/Loading";
 import { TypeProduct } from "../Types/TypeProduct";
 import { Link, useNavigate } from "react-router-dom";
+import VerificationLogin from "../components/VerificationLogin";
 
 const Promotion = ()=>{
 
@@ -15,11 +16,20 @@ const Promotion = ()=>{
             console.log(res)
             setArrayPromotion(res.data)
         }catch(err){
-            navigate('/')
+            alert(`Algo deu errado ${err}` )
     }}
 
+    const Verification = async ()=>{
+        const login = await VerificationLogin()
+        if (!login) {
+            navigate('/')
+        }else{
+            productgetapi()
+        }
+     }
+
     useEffect(()=>{
-        productgetapi()
+        Verification()
         console.log('rodouuu')
     }, [])
 

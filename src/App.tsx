@@ -20,7 +20,7 @@ function App() {
     <div className="App overflow-hidden ">
       <Menu />
       <Routes>
-          <Route path='/' element={<Login />} />
+          <Route path='/' element={< Login />} />
           <Route path='/home' element={<Home />} />
           <Route path='/create' element={<CreateProduct />} />
           <Route path='/CreateCount' element={<CreateCount />} />

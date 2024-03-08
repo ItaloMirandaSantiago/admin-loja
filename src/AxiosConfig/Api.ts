@@ -1,6 +1,6 @@
 import axios from "axios";
 import { TypeProductOptional } from "../Types/TypeProduct";
-import { useNavigate } from "react-router-dom";
+import VerificationLogin from "../components/VerificationLogin";
 
 const ModalApi = axios.create({
     baseURL: 'http://localhost:4000',
@@ -23,7 +23,7 @@ type TypeApi  = {
 }
 
 const Api = async ({url, method, data, product, products} : TypeApi)=>{
-    const navigate = useNavigate()
+
 
     if (!data) {
         console.log('foi')
@@ -31,33 +31,37 @@ const Api = async ({url, method, data, product, products} : TypeApi)=>{
         if (save) {
             data = JSON.parse(save)
         }else{
-           alert('senha ou login não constam no sistema, volte ao menu de login')
-           navigate('/')
+           VerificationLogin()
         }
-       
     }
-    const res = await ModalApi.request({
-        url,
-        method,
-        data: {
-            title: product?.title,
-            description: product?.description,
-            unit: product?.unit,
-            price: product?.price,
-            productionprice: product?.productionprice,
-            id: product?.id,
-            newprice: product?.newprice,
-            discount: product?.discount,
-            products
 
-        },
-        headers: {
-            admin: data?.login,
-            password: data?.password
-        }
-        
-    })
-    return res.data
+    try {
+        const res = await ModalApi.request({
+            url,
+            method,
+            data: {
+                title: product?.title,
+                description: product?.description,
+                unit: product?.unit,
+                price: product?.price,
+                productionprice: product?.productionprice,
+                id: product?.id,
+                newprice: product?.newprice,
+                discount: product?.discount,
+                products
+    
+            },
+            headers: {
+                admin: data?.login,
+                password: data?.password
+            }
+            
+        })
+        return res.data
+    } catch (error) {
+        alert('Servidor fora do ar no momento')
+    }
+
 }
 
 export default Api

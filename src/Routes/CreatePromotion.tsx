@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Api from "../AxiosConfig/Api"
 import { TypeProduct } from "../Types/TypeProduct"
 import Product from "../components/Product"
@@ -9,20 +9,17 @@ const CreatePromotion= ()=>{
     const [products, setProducts] = useState<TypeProduct[] | []>([])
     const [newprice, setNewprice] = useState<string>('')
     const [date, setDate] = useState<number | null>(null)
-
+  
     const getproduct = async (event: TypeProduct)=>{
         if (newprice && date && products) {
             const product = await Api({url: 'createpromotion', method: 'post', product: {id:event.id, newprice, discount: date}})
             if (product.sucess) {
                 setProducts(products.slice(1))
-            }   
+            } 
         }
-   
     }
 
     useEffect(()=>{
-        console.log('useeffect')
-        console.log(arrayproductstring)
         if (arrayproductstring) {
             const arrayid = JSON.parse(arrayproductstring)
             setProducts(arrayid)  

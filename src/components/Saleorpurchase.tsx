@@ -3,15 +3,13 @@ import Api from "../AxiosConfig/Api"
 import { TypeProduct } from "../Types/TypeProduct"
 import { Link, useNavigate } from "react-router-dom"
 import Loading from "./Loading"
+import VerificationLogin from "./VerificationLogin"
 
 const SaleOrPurchase = ()=>{
     const [arrayproduct, setArrayproduct] = useState<TypeProduct[] | null>(null)
     const [arraychekbox, setArrayCheck] = useState<TypeProduct[] | []>([])
     const navigate = useNavigate()
     
-    const SaleProducts = async ({id} : {id: number})=>{
-        await Api({url: "products", method: 'put', product: {id}})
-    }
 
     const productgetapi = async ()=>{
         try{
@@ -21,6 +19,15 @@ const SaleOrPurchase = ()=>{
         }catch(err){
             navigate('/')
     }}
+
+    const Verification = async ()=>{
+        const login = await VerificationLogin()
+        if (!login) {
+            navigate('/')
+        }else{
+            productgetapi()
+        }
+     }
 
     const CheckBox = (id: TypeProduct)=>{
         let verification = true
@@ -41,7 +48,7 @@ const SaleOrPurchase = ()=>{
     }, [arraychekbox])
 
     useEffect(()=>{
-        productgetapi()
+        Verification()
     }, [])
 
     return(
