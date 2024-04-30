@@ -12,6 +12,8 @@ const Sale = ()=>{
     const { arrayproductstring }: { arrayproductstring?: string } = useParams()
     const [products, setProducts] = useState<TypeProduct[] | []>([])
     const [productsIdorSale, setproductsIdorSale] = useState<productsIdorSale[] | []>([])
+    const [botaoDesabilitado, setBotaoDesabilitado] = useState(false);
+    const [nameButton, setNameButton] = useState('Vender')
     const navigate = useNavigate()
     
     useEffect(()=>{
@@ -22,17 +24,28 @@ const Sale = ()=>{
     }, [arrayproductstring])
 
     async function SaleProductApi() {
+        setBotaoDesabilitado(true)
+        setNameButton('Carregando...')
         try {
-            const resapi =  await Api({url: "products", method:"put", products: productsIdorSale})
+            const dataCru = localStorage.getItem('login')
+            if (dataCru) {
+                const data = JSON.parse(dataCru)
+            
+            const resapi =  await Api({url: "products", method:"put", products: productsIdorSale, data})
             console.log(resapi)
             if (resapi.sucess) {
                 navigate('/home')
             }else{
                 alert(resapi.error)
             }
-        } catch (error) {
+        }else{
+            localStorage.removeItem('login')
+            alert('problema no email ou senha salvos localmente, excluindo dados...')
+        }} catch (error) {
             alert(`algo deu errado, error: ${error}`)
         }
+        setBotaoDesabilitado(false)
+        setNameButton('Vender')
     }
 
     function inputvalueid(product: TypeProduct, sale: number) {
@@ -90,7 +103,7 @@ const Sale = ()=>{
                 </table>
 
                 <div className="flex justify-center items-center">
-                    <button className="py-3 rounded-md bg-green-400 hover:bg-green-700" onClick={SaleProductApi}>Vender</button>
+                    <button disabled={botaoDesabilitado} className="py-3 rounded-md bg-green-400 hover:bg-green-700" onClick={SaleProductApi}>{nameButton}</button>
                 </div>
             </div>
             }

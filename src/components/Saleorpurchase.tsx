@@ -111,10 +111,7 @@ const SaleOrPurchase = ()=>{
             :
             <Loading />}
             </div>
-                
-
-            <button>Venda</button>
-            <button>Compra</button>
+        
         </div>
         </div>
     )

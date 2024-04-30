@@ -16,7 +16,7 @@ const Graphic = ()=>{
             console.log(resApi)
             setresApiGraphicBar(resApi.date)
             setResApiGraphicDoughmut(resApi.solds)
-            setResApiGraphicDoughmutLoss(resApi.loss)
+            setResApiGraphicDoughmutLoss(resApi.greaterProfit)
 
         }catch(err){
             

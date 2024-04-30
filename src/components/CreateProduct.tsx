@@ -82,7 +82,7 @@ const CreateProduct = ()=> {
                     
                         <input name="unit" className="input_tap"  type="number" value={unit} onChange={(e)=> setUnit(parseFloat(e.target.value))} placeholder="Unidades"  />
                     
-                    <textarea name="description" className=" border p-2 border-blue-600 w-full" placeholder="Descrição" rows={6} value={description} onChange={(e)=> {setDescription(e.target.value.length < 200 ? e.target.value : e.target.value.substring(0, 200))}}  />
+                    <textarea name="description" className=" border p-2 border-blue-600 w-full text-black" placeholder="Descrição" rows={6} value={description} onChange={(e)=> {setDescription(e.target.value.length < 200 ? e.target.value : e.target.value.substring(0, 200))}}  />
                     <div className="text-right w-full">
                         <p className=" text-black">{description.length}/200</p>
                     </div>
